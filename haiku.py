@@ -1,8 +1,7 @@
-
-def is_vowel?(charcater):
+def is_vowel(character):
     """Determines whether a character is a vowel or not """
     vowels = ["A", "E", "I", "O", "U"]
-    if character is in vowels:
+    if character.upper() in vowels:
         return True
     else:
         return False
@@ -10,48 +9,63 @@ def is_vowel?(charcater):
 def count_vowels(search_string):
     """Counts the vowels in a string """
     count = 0
-    for character in search_string:
-        if is_vowel?(character):
+    for _,character in enumerate(search_string):
+        if is_vowel(character):
             count += 1
     return count
 
-def has_contiguous_vowels(search_string):
+def contiguous_vowel_count(search_string):
     """ Determines if there is contiguous vowels in a search string and if there is then search it"""
-    last_char_vowel = False
-    contiguous = False
-    locations = []
-    for character,counter in enumerate(search_string):
+    last_char = ''
+    counter = 0
 
-        if last_char_vowel and is_vowel?(character):
-            contiguous = True
-            locations.push((counter-1, counter))
-            last_char_vowel = False
+    for _,character in enumerate(search_string):
+        if is_vowel(character) and is_vowel(last_char):
+            counter += 1
 
-        if is_vowel?(character):
-            last_char_vowel = True
+        last_char = character
+    return counter
 
-    return {"contiguous?": contiguous, "locations": locations}
+def half_contiguous(i):
+    """if i is even return i / 2, if i is odd return i % 2"""
+    if i % 2 == 0 :
+        return (i / 2)
+    else:
+        return (i % 2)
 
-def trim_contiguous_vowels(search_string, locations):
-    """Remove one of the contiguous values"""
-    "".join([char for c,i in enumerate(search_string) if i not in locations[1])
+def ends_in(search_string, sub_string):
+    """Determines whether a string ends in a certain substring"""
+    end_characters = search_string[-len(sub_string):]
 
+    if end_characters == sub_string:
+        return True
+    else:
+        return False
 
 def count_syllables(input_string):
-    syllable_count = 0
+    """Estimates the syllable count for a word"""
+    syllable_count = count_vowels(input_string)
 
-    # Check if there are contiguous vowels in the statement
-    results = has_contiguous_vowels(input_string)
+    if ends_in(input_string, "ian"):
+        contiguous_count =  (contiguous_vowel_count(input_string) - 1)
+        syllable_count -= half_contiguous(contiguous_count)
+    else:
+        contiguous_count =  (contiguous_vowel_count(input_string))
+        syllable_count -= half_contiguous(contiguous_count)
 
-    # If there are contiguous values we can remove them and then count the vowels
-    if results["contiguous?"]:
-        input_string = trim_contiguous_vowels(input_string, results["locations"])
-        syllable_count += count_vowels(input_string)
-    else: # Else we can just count the vowels
-        syllable_count += count_vowels(input_string)
-
-    # If it ends in e but not le then subtract one
-    if input_string[-1] == 'e' and input_string[-2] != 'l':
+    if ends_in(input_string, "e") and not ends_in(input_string, "le"):
         syllable_count -= 1
 
-    if input_string[-1:-3]
+    if ends_in(input_string, "ed") and input_string[-3].upper() not in ['t','i','e']:
+        syllable_count -= 1
+
+    if ends_in(input_string, "es") and input_string[-3].upper() not in ['t','i','e']:
+        syllable_count -= 1
+
+    return syllable_count
+
+def main():
+    print(count_syllables("Programmatically"))
+
+if __name__ == '__main__':
+    main()
