@@ -127,9 +127,9 @@ syllable_count = 0
 syllable_count = count_vowels(word)
 
 if word ends in "ian"
-  syllable_count -= (contiguous_vowel_count(word) - 1)
+  syllable_count -= (half the contiguous_vowel_count(word) - 1)
 else   
-  syllable_count -= contiguous_vowel_count(word)
+  syllable_count -= half the contiguous_vowel_count(word)
 end
 
 if word ends in "e" and doesnt end in "le"

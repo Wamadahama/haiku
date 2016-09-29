@@ -1,71 +1,41 @@
-def is_vowel(character):
-    """Determines whether a character is a vowel or not """
-    vowels = ["A", "E", "I", "O", "U"]
-    if character.upper() in vowels:
-        return True
-    else:
-        return False
+import syllables
 
-def count_vowels(search_string):
-    """Counts the vowels in a string """
-    count = 0
-    for _,character in enumerate(search_string):
-        if is_vowel(character):
-            count += 1
-    return count
+def parse_haiku(haiku_string, delim):
+    """Parses a haiku where delim is the delimiter"""
+    # Get a list of the lines
+    lines = haiku_string.split(delim)
 
-def contiguous_vowel_count(search_string):
-    """ Determines if there is contiguous vowels in a search string and if there is then search it"""
-    last_char = ''
-    counter = 0
+    # Separate the words on the lines
+    separated_words = [[word.strip(".") for word in line.split(" ")] for line in lines]
+    return separated_words
 
-    for _,character in enumerate(search_string):
-        if is_vowel(character) and is_vowel(last_char):
-            counter += 1
+def get_haiku_syllables(parsed_haiku):
+    """Returns a tuple  with the counts of syllables for each line"""
+    line_counts = []
 
-        last_char = character
-    return counter
+    print(parsed_haiku)
 
-def half_contiguous(i):
-    """if i is even return i / 2, if i is odd return i % 2"""
-    if i % 2 == 0 :
-        return (i / 2)
-    else:
-        return (i % 2)
+    for line in parsed_haiku:
+        counter = 0
+        for word in line:
+            counter += syllables.count_syllables(word)
+            print(counter)
+        line_counts.append(counter)
 
-def ends_in(search_string, sub_string):
-    """Determines whether a string ends in a certain substring"""
-    end_characters = search_string[-len(sub_string):]
+    return tuple(line_counts)
 
-    if end_characters == sub_string:
-        return True
-    else:
-        return False
 
-def count_syllables(input_string):
-    """Estimates the syllable count for a word"""
-    syllable_count = count_vowels(input_string)
-
-    if ends_in(input_string, "ian"):
-        contiguous_count =  (contiguous_vowel_count(input_string) - 1)
-        syllable_count -= half_contiguous(contiguous_count)
-    else:
-        contiguous_count =  (contiguous_vowel_count(input_string))
-        syllable_count -= half_contiguous(contiguous_count)
-
-    if ends_in(input_string, "e") and not ends_in(input_string, "le"):
-        syllable_count -= 1
-
-    if ends_in(input_string, "ed") and input_string[-3].upper() not in ['t','i','e']:
-        syllable_count -= 1
-
-    if ends_in(input_string, "es") and input_string[-3].upper() not in ['t','i','e']:
-        syllable_count -= 1
-
-    return syllable_count
 
 def main():
-    print(count_syllables("Programmatically"))
+    print(syllables.count_syllables("A"))
+    print(syllables.count_syllables("frog"))
+    print(syllables.count_syllables("jumps"))
+    print(syllables.count_syllables("into"))
+    print(syllables.count_syllables("the"))
+    print(syllables.count_syllables("pond"))
+
+    parsed_haiku = parse_haiku("An old silent pond, A frog jumps into the pond, splash! Silence again", ",")
+    print(get_haiku_syllables(parsed_haiku))
 
 if __name__ == '__main__':
     main()
