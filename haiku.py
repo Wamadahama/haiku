@@ -20,3 +20,23 @@ def get_haiku_syllables(parsed_haiku):
         line_counts.append(counter)
 
     return tuple(line_counts)
+
+def scrape_haiku_poetry():
+    """Scrapes http://www.haiku-poetry.org/famous-haiku.html and returns haikus as json"""
+    haiku_website = "http://www.haiku-poetry.org/famous-haiku.html"
+    raw_html = urllib.request.urlopen(haiku_website).read()
+
+    soup = BeautifulSoup(raw_html, "html.parser")
+    haiku_lists = soup.findAll("div", {"class": "col-right"})
+
+    haikus = [[line.strip() for line in haiku.find_all('p')[1].get_text().split('\n')]
+                            for haiku in haiku_lists]
+
+    haikus = [",".join(haiku) for haiku in haikus]
+
+    haiku_dict = []
+
+    for i,haiku in enumerate(haikus):
+        haiku_dict.append({ "id" : str(i), "haiku_string" : haiku })
+
+    return json.dumps(haiku_dict)
