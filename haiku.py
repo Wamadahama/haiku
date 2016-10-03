@@ -1,4 +1,5 @@
 import syllables
+import json
 
 def parse_haiku(haiku_string, delim):
     """Parses a haiku where delim is the delimiter"""
@@ -14,6 +15,7 @@ def get_haiku_syllables(parsed_haiku):
     line_counts = []
 
     for line in parsed_haiku:
+        print(line)
         counter = 0
         for word in line:
             counter += syllables.count_syllables(word)
@@ -40,3 +42,11 @@ def scrape_haiku_poetry():
         haiku_dict.append({ "id" : str(i), "haiku_string" : haiku })
 
     return json.dumps(haiku_dict)
+
+def haiku_tests():
+    with open("haikus.json") as json_file:
+        haiku_dict = json.load(json_file)
+
+    for i,d in enumerate(haiku_dict):
+        parsed_haiku = parse_haiku(d["haiku_string"], ",")
+        print(get_haiku_syllables(parsed_haiku))

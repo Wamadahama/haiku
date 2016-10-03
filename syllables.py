@@ -9,6 +9,11 @@ def is_vowel(character):
 def count_vowels(search_string):
     """Counts the vowels in a string """
     count = 0
+
+    # and sometimes y=
+    if search_string[-1].upper() == "Y" and is_vowel(search_string[-2]) == False:
+        count += 1
+
     for _,character in enumerate(search_string):
         if is_vowel(character):
             count += 1
@@ -49,7 +54,7 @@ def count_syllables(input_string):
     if len(input_string) == 0:
         return 0
 
-    if len(input_string) == 1:
+    if len(input_string) == 1 or len(input_string) == 2:
         return 1
 
     syllable_count = count_vowels(input_string)
@@ -60,6 +65,9 @@ def count_syllables(input_string):
     else:
         contiguous_count =  (contiguous_vowel_count(input_string))
         syllable_count -= half_contiguous(contiguous_count)
+
+    if "te" in input_string and not ends_in(input_string, "te"):
+        syllable_count -= 1
 
     if ends_in(input_string, "e") and not ends_in(input_string, "le") and input_string != "the":
         syllable_count -= 1
