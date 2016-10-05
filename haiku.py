@@ -1,4 +1,5 @@
 import syllables
+import helpers
 import json
 
 def parse_haiku(haiku_string, delim):
@@ -44,8 +45,9 @@ def scrape_haiku_poetry():
     return json.dumps(haiku_dict)
 
 def haiku_tests():
-    with open("haikus.json") as json_file:
-        haiku_dict = json.load(json_file)
+    haiku_dict = helpers.read_json_file("haikus.json")
+    # with open("haikus.json") as json_file:
+        # haiku_dict = json.load(json_file)
 
     for i,d in enumerate(haiku_dict):
         parsed_haiku = parse_haiku(d["haiku_string"], ",")
