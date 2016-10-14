@@ -16,7 +16,6 @@ def get_haiku_syllables(parsed_haiku):
     line_counts = []
 
     for line in parsed_haiku:
-        print(line)
         counter = 0
         for word in line:
             counter += syllables.count_syllables(word)

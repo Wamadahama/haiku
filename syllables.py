@@ -12,7 +12,7 @@ def count_vowels(search_string):
     """Counts the vowels in a string """
     count = 0
 
-    # and sometimes y=
+    # and sometimes y
     if search_string[-1].upper() == "Y" and is_vowel(search_string[-2]) == False:
         count += 1
 

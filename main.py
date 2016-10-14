@@ -4,12 +4,13 @@ import markovify
 
 
 def main():
-
-    text_model = markovify.Text(text)
-
-    for i in range(5):
-        print(text_model.make_sentence())
-
+    #
+    # text_model = markovify.Text(text)
+    #
+    # for i in range(5):
+    #     print(text_model.make_sentence())
+    #
+    run_tests()
 
 def run_tests():
     results = syllables.compare_full_dictionary(data="string")
