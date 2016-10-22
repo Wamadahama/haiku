@@ -23,6 +23,10 @@ def get_haiku_syllables(parsed_haiku):
 
     return tuple(line_counts)
 
+def pretty_print(haiku_list):
+    for line in haiku_list:
+        print(line)
+
 def haiku_tests():
     """Tests all the known haikus in the haikus.json"""
     haiku_dict = helpers.read_json_file("res/haikus.json")

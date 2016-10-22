@@ -1,6 +1,7 @@
 import markovify
 import syllables
 import random
+import threading
 
 class Generator:
 
@@ -20,30 +21,48 @@ class Generator:
 
         haiku = []
 
-        for _,required_line_syll_count in self.HAIKU_FORMAT:
+        for required_line_syll_count in self.HAIKU_FORMAT:
+            generated_line = []
             # Pull a random sentence from the generated senteces
-            sentence = sentences[random.randint(0, len(sentences))].trim()
+            sentence = sentences[random.randint(0, len(sentences)-1)]
 
             # Get a syllable count of the sentence
             words = sentence.split(" ")
             word_counts = [syllables.count_syllables(word) for word in words]
 
-            # At first get a random word, this will be the base
-            initial_word = words[random.randint(0, len(words))]
-            initial_word_count = word_counts[words.index(initial_word)]
+            current_syll_count = 0
+            remaining_syllabes = (required_line_syll_count - current_syll_count)
 
-            # How many syllables do we have left after selecting an initial word
-            remaining_syllabes = (initial_word_count - required_line_syll_count)
+            while True:
+                # Determine how many syllables we have left
+                options = [(word,count) for word,count in zip(words, word_counts)
+                                            if count <= remaining_syllabes]
 
-            if remaining_syllabes == 0:
-                haiku.append(initial_word)
-                continue
+                # Get a random word from out options
+                random_word_index = 0
+                word_tuple = ()
+                if len(options) == 0:
+                    random_word_index = 0
+                else:
+                    random_word_index = random.randint(0, (len(options)-1))
 
-            # if we pulled a word to big right off the bat lets just restart
-            if remaining_syllabes < 0:
-                generate_haiku(self, weight)
-            else:
-            # lets grab some more words
-                while True:
-                    options = [(word,count) for word,count zip(words, word_counts)
-                                                    if count < remaining_syllabes]
+                word_tuple = options[random_word_index]
+
+                word = word_tuple[0]
+
+                if word in generated_line:
+                    next
+
+                current_syll_count = word_tuple[1]
+
+                remaining_syllabes -= current_syll_count
+                generated_line.append(word)
+
+                if remaining_syllabes <= 0:
+                    break
+
+                line_string = ' '.join(generated_line)
+
+            haiku.append(line_string)
+
+        return haiku

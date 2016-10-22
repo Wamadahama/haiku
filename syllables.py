@@ -71,7 +71,7 @@ def count_syllables(input_string):
     if "te" in input_string and not ends_in(input_string, "te"):
         syllable_count -= 1
 
-    if ends_in(input_string, "e") and not ends_in(input_string, "le") and input_string != "the":
+    if ends_in(input_string, "e") and not ends_in(input_string, "le") and input_string != "the" and not ends_in(input_string, "he"):
         syllable_count -= 1
 
     if ends_in(input_string, "ed") and input_string[-3].upper() not in ['t','i','e']:
