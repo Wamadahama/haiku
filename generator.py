@@ -17,7 +17,7 @@ class Generator:
     def generate_haiku(self, weight=10):
         """Generates a haiku based off of the text model, weight determines
         how many sources it will pull from"""
-        sentences = [self.text_model.make_sentence() for i in range(weight)]
+        sentences = [self.text_model.make_short_sentence(char_limit=35, tries=weight) for i in range(weight)]
 
         haiku = []
 
