@@ -14,11 +14,27 @@ class Generator:
         """Updates the text model"""
         self.text_model = markovify.Text(text)
 
+    def generate_haiku_iteratively(self):
+        haiku = []
+        for required_line_syll_count in self.HAIKU_FORMAT:
+            while True:
+                sentence = self.text_model.make_short_sentence(char_limit=35)
+                
+                if sentence is None:
+                    continue
+                words = sentence.split(" ")
+                word_counts = [syllables.count_syllables(word) for word in words]
+
+                if sum(word_counts) == required_line_syll_count:
+                    haiku.append(sentence)
+                else:
+                    continue
+
+
     def generate_haiku(self, weight=10):
         """Generates a haiku based off of the text model, weight determines
         how many sources it will pull from"""
-        sentences = [self.text_model.make_short_sentence(char_limit=35, tries=weight) for i in range(weight)]
-
+        sentences = [self.text_model.make_sentence() for i in range(0, weight*10)]
         haiku = []
 
         for required_line_syll_count in self.HAIKU_FORMAT:
@@ -51,7 +67,7 @@ class Generator:
                 word = word_tuple[0]
 
                 if word in generated_line:
-                    next
+                    continue
 
                 current_syll_count = word_tuple[1]
 

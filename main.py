@@ -4,12 +4,12 @@ import markovify
 import generator
 
 def main():
-    with open("res/corpus_texts/lovecraft.txt") as f:
+    with open("res/corpus_texts/color_out_of_space.txt") as f:
          raw_text = f.read()
 
     haiku_generator = generator.Generator(raw_text, [5,7,5])
 
-    haiku.pretty_print(haiku_generator.generate_haiku(weight=100))
+    haiku.pretty_print(haiku_generator.generate_haiku_iteratively())
 
 
 def run_tests():
