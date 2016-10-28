@@ -18,7 +18,7 @@ class Generator:
         haiku = []
         for required_line_syll_count in self.HAIKU_FORMAT:
             while True:
-                sentence = self.text_model.make_short_sentence(char_limit=35)
+                sentence = self.text_model.make_short_sentence(char_limit=120)
 
                 if sentence is None:
                     continue
@@ -27,6 +27,7 @@ class Generator:
                 word_counts = [syllables.count_syllables(word) for word in words]
 
                 if sum(word_counts) == required_line_syll_count:
-                    haiku.append(" ".join(words))
+                    haiku.append((" ".join(words)).strip("."))
                     break
+
         return haiku
