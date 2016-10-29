@@ -4,17 +4,12 @@ import markovify
 import generator
 
 def main():
-    # with open("res/corpus_texts/lovecraft.txt") as f:
-    #      raw_text = f.read()
-    #
-    # haiku_generator = generator.Generator(raw_text, [5,7,5])
-    #
-    # haiku.pretty_print(haiku_generator.generate_haiku())
-    syllable_repl()
 
-def syllable_repl():
-    while True:
-        print(syllables.count_syllables(input(":")))
+    # with open("res/corpus_texts/") as f:
+    #      raw_text = f.read()
+
+    haiku_generator = generator.Generator(corpus_directory='res/corpus_texts/')
+    haiku.pretty_print(haiku_generator.generate_haiku())
 
 
 def run_tests():

@@ -1,2 +1,2 @@
 # haiku
-Syllables data gathered from http://www.delphiforfun.org/programs/Syllables.htm
+See the `docs` directory for some writeups on this project 

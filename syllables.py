@@ -113,3 +113,7 @@ def compare_full_dictionary(data="tpl"):
         return "( (true " + str(true_count) + ") (false " + str(false_count) + ") )"
     else:
         return (true_count, false_count)
+
+def syllable_repl():
+    while True:
+        print(syllables.count_syllables(input(":")))
