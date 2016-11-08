@@ -1,2 +1,2 @@
 # haiku
-See the `docs` directory for some writeups on this project 
+See the `haiku\docs` directory for some writeups on this project 
