@@ -1,0 +1,128 @@
+a {
+  color: #2196f3;
+}
+
+a:visited{
+  color: #d33682 !important;
+}
+
+a:hover {
+  color: #6c71c4;
+}
+
+
+h1,h2,h3 {
+  background-color: #fff !important;
+  font-family: 'Slabo 27px', serif !important;
+}
+
+body, p, article {
+  position: relative;
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+article > header {
+  color: #111;
+  font-family: 'Slabo 27px', serif;
+  font-size: 48px;
+  text-align: center;
+}
+
+article > p {
+  text-align: left;
+}
+
+input, textarea {
+  margin: 3px !important;
+}
+
+th{
+  background-color: #268bd2
+}
+
+pre {
+  background-color: #002b36 !important;
+  color: #93a1a1;
+}
+
+img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+.submit-button {
+  color: #111;
+}
+
+.nav-button-empty{
+  color: #111;
+}
+
+.sidebar{
+}
+
+/* Header area styles */
+.header-bar{
+  font-size: 24px;
+}
+
+.menu-items {
+  padding: 15px;
+  float: right;
+}
+
+.page-title h1 {
+  padding: 15px;
+  float: left;
+}
+
+/* materialish overides */
+.materialish-header {
+  height: 15vh;
+  background-color: #fff;
+}
+
+/* Overides picnic so we can center the content */
+.flex {
+  width: 100% !important;
+  margin-left: 0 !important;
+}
+
+
+/* Admin classes */
+.post-edit-area {
+  font-size: 12px;
+}
+.warn {
+  color: #f44336 !important;
+}
+
+.warn:hover {
+  font-size: 12px;
+  color: #b71c1c !important;
+}
+
+/* hover */
+#top-link {
+  background: none;
+  margin-bottom: 25px;
+  margin-right: 25px;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: auto;
+  z-index: 100;
+  display: none;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #d33682;
+}
+
+#title {
+  color: #111 !important;
+}
+
+.submit-button {
+  margin-top: 15px !important;
+  float: right;
+}

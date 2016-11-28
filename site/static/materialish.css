@@ -1,0 +1,171 @@
+* {
+  box-sizing: inherit;
+}
+
+/* Line before quotes  */
+blockquote {
+  padding: 0 0 0 1em;
+  margin: 0 0 0 .1em;
+  box-shadow: inset 5px 0 rgba(17,17,17,0.3);
+}
+
+a {
+  color: #0D47A1;
+}
+
+a:hover{
+  color: #2196f3;
+}
+
+a:visited {
+  color: #673AB7;
+}
+
+/* Add roboto font and background color */
+html body {
+  background-color: #eee;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  font-size: 1.1em;
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Material like header */
+.materialish-header{
+  color: #424242;
+  width: 100%;
+  box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0px 0px 1px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 0px 1px 2px rgba(0,0,0,0.3);
+  z-index: 20;
+}
+
+.materialish-header > h1,h2,h3,h4,h5,h6,p {
+  padding: 15px;
+  margin: 1px;
+  color: #424242;
+  margin 0;
+  padding: .6em 0;
+}
+
+
+/* Material footer */
+.materialish-footer {
+  height: 5vh;
+  width: 100%;
+  background-color: #9e9e9e;
+  color: #f0f0f0;
+  z-index: 20;
+  border-top:
+}
+
+/* Used for page bodies*/
+.materialish-paper-body{
+  background-color: #fff;
+  box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0px 0px 1px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 0px 1px 2px rgba(0,0,0,0.3);
+  padding: 50px;
+  border-radius: 1px;
+
+
+  position: relative;
+  z-index: 100;
+
+  margin: auto;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  /*width: 65%;*/
+}
+
+.materialish-paper-body p,span {
+  font-size: 14px;
+}
+
+/* Cards */
+/* Medium sized card */
+.materialish-card-md {
+  box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0px 0px 1px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 0px 1px 2px rgba(0,0,0,0.3);
+  border-radius: 0px;
+  margin-left: 25px;
+  margin-right: 25px;
+  padding: 15px;
+  overflow: auto;
+}
+
+.materialish-card-image{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+/* Rounds of normal button */
+.materialish-button{
+  border-radius: 0px;
+  box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.3);
+  -webkit-box-shadow: 0px 0px 1px 2px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 0px 1px 2px rgba(0,0,0,0.3);
+  color: #fff;
+}
+
+/* Navigation bar */
+.materialish-navBar{
+  padding-top: 15px;
+  color: #fff;
+  font-size: 32px;
+  text-align: center;
+}
+
+.materialish-navItem{
+  position: relative;
+  color: #000;
+  text-decoration: none;
+}
+
+.materialish-navItem:hover{
+  color: #000;
+  text-decoration: none;
+}
+
+.materialish-navItem:before{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.materialish-navItem:hover:before{
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+/*end navigation bar*/
+
+/* Color a large area */
+.materialish-strand {
+  width: 100%;
+  height: 40vh;
+  z-index: 20;
+  position: absolute;
+}
