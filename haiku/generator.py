@@ -6,11 +6,11 @@ from glob import glob
 
 class Generator:
 
-    def __init__(self, text='', HAIKU_FORMAT=[5,7,5], corpus_directory=''):
+    def __init__(self, text='', HAIKU_FORMAT=[5,7,5], corpus_directory='', corpus_list=[]):
         """Initialize the haiku generator """
         self.HAIKU_FORMAT = HAIKU_FORMAT
 
-        # IF they ppassed in the directory then
+        # If they ppassed in the directory then
         # we want to get all of the files and
         # combine the markov chains
         if corpus_directory != '':
@@ -26,6 +26,10 @@ class Generator:
             # Combine the chains
             self.text_model = markovify.combine(chains)
 
+        elif corpus_list != []:
+            # Generate chains and combine
+            chains = [markovify.Text(text) for text in corpus_list]
+            self.text_model = markovify.combine(chains)
         else:
             # Else just use the passed text
             self.text_model = markovify.Text(text)
