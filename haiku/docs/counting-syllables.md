@@ -67,10 +67,15 @@ If we count the amount of vowels in this then we will get two. Which is an impro
 This applies to many words like
 
 creek - CCVVC
+
 bleak - CCVVC
+
 beak  - CVVC
+
 weak  - CVVC
+
 wreak - CCVVC
+
 coin  - CVVC
 
 There is a pattern here. If there are contiguous vowels then they only count as one syllable because a nucleus can be a cluster of vowels.
@@ -79,8 +84,11 @@ There is an exception to this rule, when the word ends in *-ian* then the  i and
 
 Examples:
 am-phib-i-an
+
 bar-bar-i-an
+
 au-thor-it-ar-i-an
+
 in-di-an
 
 ---
