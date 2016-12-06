@@ -13,7 +13,7 @@ There are two parts to a syllable:
 This represents a consonant sound, which can be one or more consonants
 
 ### The Rime
-This is further broken down into two portions, the nucleus and the optional coda
+This is further broken down into two portions, the *nucleus* and the *optional coda*
 
 The nucleus is typically a vowel or a combination of vowels
 
