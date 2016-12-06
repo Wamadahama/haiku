@@ -130,23 +130,33 @@ For example **truncated** should not be replaced because if the -ted, but but th
 Using the above information we can write a method that can a syllable count of about %75-80 of English words.
 
 ## Algorithm psuedo code
-```ruby
-syllable_count = 0
-syllable_count = count_vowels(word)
+```python
+ if len(input_string) == 0:
+        return 0
 
-if word ends in "ian"
-  syllable_count -= (half the contiguous_vowel_count(word) - 1)
-else   
-  syllable_count -= half the contiguous_vowel_count(word)
-end
+    if len(input_string) == 1 or len(input_string) == 2:
+        return 1
 
-if word ends in "e" and doesnt end in "le"
-  syllable_count -= 1   
-end
+    syllable_count = count_vowels(input_string)
 
-if word ends in ed or es and word[-3] doesnt = t,i,or s
-  syllable_count -= 1
-end
+    if ends_in(input_string, "ian"):
+        contiguous_count =  (contiguous_vowel_count(input_string) - 1)
+        syllable_count -= half_contiguous(contiguous_count)
+    else:
+        contiguous_count =  (contiguous_vowel_count(input_string))
+        syllable_count -= half_contiguous(contiguous_count)
+
+    if "te" in input_string and not ends_in(input_string, "te"):
+        syllable_count -= 1
+
+    if ends_in(input_string, "e") and not ends_in(input_string, "le") and input_string != "the" and not ends_in(input_string, "he"):
+        syllable_count -= 1
+
+    if ends_in(input_string, "ed") and input_string[-3].upper() not in ['t','i','e']:
+        syllable_count -= 1
+
+    if ends_in(input_string, "es") and input_string[-3].upper() not in ['t','i','e']:
+        syllable_count -= 1
 ```
 
 This should be able to produce a semi-accurate count on how many syllables there are in a statement. There are still exceptions. Compound things like facebook, or treehouse will not work.
